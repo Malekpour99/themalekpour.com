@@ -2,7 +2,18 @@ from django.shortcuts import render
 
 
 def index_view(request):
-    return render(request, "website/index.html")
+    context = {
+        "contents": [
+            "programming",
+            "hiking & nature",
+            "books & movies",
+            "motivation",
+            "mental & physical health",
+            "productivity tips",
+        ],
+        "full_name": "amirhosein malekpour",
+    }
+    return render(request, "website/index.html", context=context)
 
 
 def contact_view(request):
