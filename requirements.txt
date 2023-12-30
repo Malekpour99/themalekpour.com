@@ -1,4 +1,7 @@
 asgiref
 Django>4.2,<4.3
+django-ranged-response
+django-simple-captcha
+Pillow
 sqlparse
 tzdata
