@@ -70,6 +70,8 @@
               </div>
 
               <div class="col-md-12 text-center">
+                {{ form.captcha }}
+                <button type="submit">Send Message</button>
                 {% if form.errors %}
                 <div class="alert alert-error">
                   <h4>Please fix the following errors</h4>
@@ -89,7 +91,6 @@
                   {% endif %}
                 </div>
                 {% endif %}
-                <button type="submit">Send Message</button>
               </div>
             </div>
           </form>
