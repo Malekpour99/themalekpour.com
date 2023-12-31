@@ -25,9 +25,10 @@ def contact_view(request):
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, "Your Ticket Submitted Successfully!")
+            return HttpResponseRedirect('/')
         else:
             messages.add_message(request, messages.ERROR, "Your Ticket Didn't Submit! Please try again.")
-        return HttpResponseRedirect('/')
+            return render(request, "website/contact.html", {"form": form})
     form = ContactForm()
     return render(request, "website/contact.html", {"form": form})
 
