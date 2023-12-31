@@ -51,6 +51,23 @@
 
         <div class="col-lg-7">
           <form action="{% url 'website:contact' %}" method="post" class="contact-form">
+            {% if form.errors %}
+                <h5>Please Fix This Errors & Try Again.<h5>
+                <div class="alert alert-danger class-md-12 text-center" role="alert">
+                    {% for field in form %}
+                    {% if field.errors %}
+                    {% for error in field.errors %}
+                    <p class="error">
+                      {{ field.name|title }} - {{ error|escape }}
+                    </p>
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                  {% if form.non_field_errors %}
+                    {{ form.non_field_errors }}
+                  {% endif %}
+                </div>
+            {% endif %}
             {% csrf_token %}
             <div class="row gy-4">
               <div class="col-md-6">
@@ -72,25 +89,6 @@
               <div class="col-md-12 text-center">
                 {{ form.captcha }}
                 <button type="submit">Send Message</button>
-                {% if form.errors %}
-                <div class="alert alert-error">
-                  <h4>Please fix the following errors</h4>
-                  <ul>
-                    {% for field in form %}
-                    {% if field.errors %}
-                    {% for error in field.errors %}
-                    <li>
-                      <a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a>
-                    </li>
-                    {% endfor %}
-                    {% endif %}
-                    {% endfor %}
-                  </ul>
-                  {% if form.non_field_errors %}
-                  {{ form.non_field_errors }}
-                  {% endif %}
-                </div>
-                {% endif %}
               </div>
             </div>
           </form>
