@@ -1,0 +1,26 @@
+<div
+  class="modal fade"
+  id="notificationModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="notificationModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        {% if messages %}
+            {% for message in messages %}
+                <div
+                class="alert {% if message.tags == 'error' %} alert-danger {% elif message.tags %} alert-{{ message.tags }}{% endif %}">
+                {{ message|safe }}
+                </div>
+            {% endfor %}
+        {% endif %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
