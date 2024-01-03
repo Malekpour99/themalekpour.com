@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Post
+from blog.models import Post, Category
 
 
 @admin.register(Post)
@@ -24,3 +24,6 @@ class PostAdmin(admin.ModelAdmin):
     # Sets the ordering of your data list
     search_fields = ["title", "content"]
     # Determines which fields will be searched for your search query
+
+
+admin.site.register(Category)
