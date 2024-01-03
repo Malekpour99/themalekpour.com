@@ -33,15 +33,15 @@
               </div>
 
               <h2 class="entry-title">
-                <a href="blog-single.html">{{ post.title }}</a>
+                <a href="#">{{ post.title }}</a>
               </h2>
 
               <div class="entry-meta">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{% url 'blog:single' pid=post.id %}">{{ post.author }}</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{% url 'blog:single' pid=post.id %}"><time datetime="{{ post.published_date }}">{{ post.published_date|date:"d M Y" }}</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{% url 'blog:single' pid=post.id %}">12 Comments</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-eye"></i> <a href="{% url 'blog:single' pid=post.id %}">{{ post.counted_views }}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">{{ post.author }}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="{{ post.published_date }}">{{ post.published_date|date:"d M Y" }}</time></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#">12 Comments</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-eye"></i> <a href="#">{{ post.counted_views }}</a></li>
                 </ul>
               </div>
 
@@ -65,20 +65,7 @@
 
             </article><!-- End blog entry -->
 
-            <div class="blog-author d-flex align-items-center">
-              <img src="{% static 'img/blog/blog-author.jpg' %}" class="rounded-circle float-left" alt="">
-              <div>
-                <h4>Amir Hosein Malek Pour</h4>
-                <div class="social-links">
-                  <a href="https://github.com/Malekpour99" class="twitter"><i class="bi bi-github"></i></a>
-                  <a href="https://www.linkedin.com/in/amirhosein-malekpour-44abb8172/" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                  <a href="mailto:malekpour.projects@gmail.com" class="linkedin"><i class="bi bi-envelope"></i></a>
-                </div>
-                <p>
-                  I am a web-developer who believes that we either get better or worse and there is no middle ground here; so if you are not getting better then you are getting worse. I will always try to help others because even if I create a tiny bit of positive change, I helped somebody to get better which leads to a better world. ✌🏽
-                </p>
-              </div>
-            </div><!-- End blog author bio -->
+            {% include "blog/includes/blog-author-bio.html" %}
 
             <div class="blog-comments">
 
