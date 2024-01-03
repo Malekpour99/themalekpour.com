@@ -37,15 +37,15 @@
               </div>
 
               <h2 class="entry-title">
-                <a href="{% url  'blog:single' %}">{{ post.title|title }}</a>
+                <a href="{% url 'blog:single' pid=post.id %}">{{ post.title|title }}</a>
               </h2>
 
               <div class="entry-meta">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{% url  'blog:single' %}">{{ post.author }}</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{% url  'blog:single' %}"><time datetime="{{ post.published_date }}">{{ post.published_date|date:"d M Y" }}</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{% url  'blog:single' %}">12 Comments</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-eye"></i> <a href="{% url  'blog:single' %}">{{ post.counted_views }}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{% url 'blog:single' pid=post.id %}">{{ post.author }}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{% url 'blog:single' pid=post.id %}"><time datetime="{{ post.published_date }}">{{ post.published_date|date:"d M Y" }}</time></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{% url 'blog:single' pid=post.id %}">12 Comments</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-eye"></i> <a href="{% url 'blog:single' pid=post.id %}">{{ post.counted_views }}</a></li>
                 </ul>
               </div>
 
@@ -54,7 +54,7 @@
                   {{ post.content|truncatewords:25 }}
                 </p>
                 <div class="read-more">
-                  <a href="{% url  'blog:single' %}">Read More</a>
+                  <a href="{% url 'blog:single' pid=post.id %}">Read More</a>
                 </div>
               </div>
 
