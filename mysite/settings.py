@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "captcha",
+    "taggit",
     "website.apps.WebsiteConfig",
     "blog.apps.BlogConfig",
 ]
