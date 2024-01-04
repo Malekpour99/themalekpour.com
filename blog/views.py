@@ -19,7 +19,8 @@ def single_view(request, pid):
         # post = get_object_or_404(Post, id=pid) # this is unsafe because you can access not published posts by using ID
         post.counted_views += 1
         post.save()
-        context = {'post': post, }
+        tags = post.tags.all()
+        context = {'post': post, 'tags': tags }
         return render(request, "blog/blog-single.html", context)
     else:
         return render(request, "blog/blog-single.html", context)
