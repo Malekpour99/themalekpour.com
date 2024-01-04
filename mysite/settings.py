@@ -135,3 +135,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# configuring django-taggit to be CASE-INSENSITIVE when looking up existing tags
+TAGGIT_CASE_INSENSITIVE = True
