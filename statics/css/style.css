@@ -1754,7 +1754,13 @@ section {
 }
 
 .blog .entry .entry-img {
-  max-height: 440px;
+  max-height: 800px;
+  margin: -30px -30px 20px -30px;
+  overflow: hidden;
+}
+
+.entry-img-home {
+  max-height: 500px;
   margin: -30px -30px 20px -30px;
   overflow: hidden;
 }
