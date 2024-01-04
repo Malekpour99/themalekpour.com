@@ -1,8 +1,14 @@
 from django import template
 from blog.models import Post, Category
+from taggit.models import Tag
 
 register = template.Library()
 
+@register.inclusion_tag("blog/includes/blog-tags.html")
+def all_tags():
+    "Retrieving all of the tags"
+    tags = Tag.objects.all()
+    return {"tags": tags}
 
 @register.inclusion_tag("blog/includes/blog-categories.html")
 def post_categories():
