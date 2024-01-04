@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load blog_tags %}
 
 {% block main_content %}
     
@@ -27,7 +27,6 @@
 
           <div class="col-lg-8 entries">
 
-            
             {% for post in posts %}
               
             <article class="entry">
@@ -78,7 +77,7 @@
 
               {% include "blog/includes/blog-search.html" %}
 
-              {% include "blog/includes/blog-categories.html" %}
+              {% post_categories %}
 
               {% include "blog/includes/blog-recent-posts.html" %}
 
