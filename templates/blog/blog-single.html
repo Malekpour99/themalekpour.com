@@ -52,7 +52,11 @@
               <div class="entry-footer">
                 <i class="bi bi-folder"></i>
                 <ul class="cats">
-                  <li><a href="#">Business</a></li>
+                  
+                  {% for category in post.category.all %}
+                    <li><a href="#">{{ category.name }}</a></li>{% if not forloop.last %},{% endif %}
+                  {% endfor %}
+                    
                 </ul>
 
                 <i class="bi bi-tags"></i>
