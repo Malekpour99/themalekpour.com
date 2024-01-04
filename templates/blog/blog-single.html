@@ -53,18 +53,16 @@
               <div class="entry-footer">
                 <i class="bi bi-folder"></i>
                 <ul class="cats">
-                  
                   {% for category in post.category.all %}
-                    <li><a href="#">{{ category.name }}</a></li>{% if not forloop.last %},{% endif %}
+                  <li><a href="#">{{ category.name }}</a></li>{% if not forloop.last %},{% endif %}
                   {% endfor %}
-                    
                 </ul>
 
                 <i class="bi bi-tags"></i>
                 <ul class="tags">
-                  <li><a href="#">Creative</a></li>
-                  <li><a href="#">Tips</a></li>
-                  <li><a href="#">Marketing</a></li>
+                  {% for tag in tags %}
+                  <li><a href="#">{{ tag.name|title }}</a></li>
+                  {% endfor %}
                 </ul>
               </div>
 
