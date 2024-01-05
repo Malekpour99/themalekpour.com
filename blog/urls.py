@@ -7,5 +7,6 @@ urlpatterns = [
     path("", home_view, name="home"),
     path("<int:pid>", single_view, name="single"),
     path("category/<str:cat_name>", home_view, name="category"),
+    path("tag/<str:tag_name>", home_view, name="tag"),
     path("search/", search_view, name="search"),
 ]
