@@ -61,7 +61,7 @@
                 <i class="bi bi-tags"></i>
                 <ul class="tags">
                   {% for tag in tags %}
-                  <li><a href="#">{{ tag.name|title }}</a></li>
+                  <li><a href="{% url 'blog:tag' tag_name=tag.name %}">{{ tag.name|title }}</a></li>
                   {% endfor %}
                 </ul>
               </div>
