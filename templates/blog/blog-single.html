@@ -54,7 +54,7 @@
                 <i class="bi bi-folder"></i>
                 <ul class="cats">
                   {% for category in post.category.all %}
-                  <li><a href="#">{{ category.name }}</a></li>{% if not forloop.last %},{% endif %}
+                  <li><a href="{% url 'blog:category' cat_name=category.name %}">{{ category.name }}</a></li>{% if not forloop.last %},{% endif %}
                   {% endfor %}
                 </ul>
 
