@@ -4,9 +4,13 @@ from blog.models import Post
 from django.db.models import Q
 
 
-def home_view(request):
+def home_view(request, **kwargs):
     posts = Post.objects.filter(published_date__lte=timezone.now(), status=True)
-    context = {"posts": posts}
+    page_title = "blog home"
+    if kwargs.get("cat_name"):
+        posts = posts.filter(category__name=kwargs["cat_name"])
+        page_title = "Category: " + kwargs["cat_name"] + " - Posts"
+    context = {"posts": posts, "page_title": page_title}
     return render(request, "blog/blog.html", context)
 
 
@@ -33,5 +37,6 @@ def search_view(request):
             posts = posts.filter(
                 Q(content__contains=search_query) | Q(title__contains=search_query)
             )
-    context = {"posts": posts}
+            page_title = "Searched for: " + "\"" + search_query + "\""
+    context = {"posts": posts, "page_title": page_title}
     return render(request, "blog/blog.html", context)
