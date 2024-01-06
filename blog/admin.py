@@ -1,9 +1,11 @@
 from django.contrib import admin
 from blog.models import Post, Category
+from django_summernote.admin import SummernoteModelAdmin
 
 
 @admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(SummernoteModelAdmin):
+    summernote_fields = ('content',)
     date_hierarchy = "created_date"
     # Activates post filtering by date hierarchy
     empty_value_display = "-empty-"
