@@ -1,8 +1,12 @@
 asgiref
+bleach
 Django>4.2,<4.3
 django-ranged-response
 django-simple-captcha
+django-summernote
 django-taggit
 Pillow
+six
 sqlparse
 tzdata
+webencodings
