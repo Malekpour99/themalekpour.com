@@ -1,11 +1,11 @@
 from django.contrib import admin
-from blog.models import Post, Category
+from blog.models import Post, Category, Comment
 from django_summernote.admin import SummernoteModelAdmin
 
 
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
-    summernote_fields = ('content',)
+    summernote_fields = ("content",)
     date_hierarchy = "created_date"
     # Activates post filtering by date hierarchy
     empty_value_display = "-empty-"
@@ -26,6 +26,20 @@ class PostAdmin(SummernoteModelAdmin):
     # Sets the ordering of your data list
     search_fields = ["title", "content"]
     # Determines which fields will be searched for your search query
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    date_hierarchy = "created_date"
+    empty_value_display = "-empty-"
+    list_display = (
+        "name",
+        "post",
+        "approved",
+        "created_date",
+    )
+    list_filter = ("post", "approved")
+    search_fields = ["name", "post"]
 
 
 admin.site.register(Category)
