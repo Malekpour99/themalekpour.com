@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from blog.models import Post
+from blog.forms import CommentForm
 from django.db.models import Q
+from django.contrib import messages
 
 
 def home_view(request, **kwargs):
@@ -18,15 +20,23 @@ def home_view(request, **kwargs):
 
 
 def single_view(request, pid):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, "Your Comment Submitted Successfully!")
+        else:
+            messages.add_message(request, messages.ERROR, "Your Comment Didn't Submit!")
+
     posts = Post.objects.filter(published_date__lte=timezone.now(), status=True)
     post = get_object_or_404(posts, id=pid)
     # checking if the post requires user to be logged in
     if not post.require_login or request.user.is_authenticated:
-        # post = get_object_or_404(Post, id=pid) # this is unsafe because you can access not published posts by using ID
+        tags = post.tags.all()
+        form = CommentForm()
         post.counted_views += 1
         post.save()
-        tags = post.tags.all()
-        context = {"post": post, "tags": tags}
+        context = {"post": post, "tags": tags, "form": form}
         return render(request, "blog/blog-single.html", context)
     else:
         return render(request, "blog/blog-single.html", context)
