@@ -164,25 +164,32 @@
               </div><!-- End comment #4 -->
 
               <div class="reply-form">
-                <h4>Leave a Reply</h4>
-                <p>Your email address will not be published. Required fields are marked * </p>
-                <form action="">
+                <h4>Leave a Comment</h4>
+                <p>Your email address will not be published. * fields are required.</p>
+                <form method="post" action="{% url 'blog:single' pid=post.id %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="post" value={{ post.id }}>
+                  {% if request.user.is_authenticated and request.user.first_name and request.user.email %}
+										<input type="hidden" name="name" value={{ request.user.first_name }}>
+										<input type="hidden" name="email" value={{ request.user.email }}>
+									{% else %}
                   <div class="row">
                     <div class="col-md-6 form-group">
-                      <input name="name" type="text" class="form-control" placeholder="Your Name*">
+                      <input name="name" type="text" class="form-control" placeholder="Your Name*" onfocus="this.placeholder=''" onblur="this.placeholder ='Your Name*'" required>
                     </div>
                     <div class="col-md-6 form-group">
-                      <input name="email" type="text" class="form-control" placeholder="Your Email*">
+                      <input name="email" type="text" class="form-control" placeholder="Your Email*" onfocus="this.placeholder=''" onblur="this.placeholder ='Your Email*'" required>
+                    </div>
+                  </div>
+                  {% endif %}
+                  <div class="row">
+                    <div class="col form-group">
+                      <input name="subject" type="text" class="form-control" placeholder="Subject" onfocus="this.placeholder=''" onblur="this.placeholder ='Subject'">
                     </div>
                   </div>
                   <div class="row">
                     <div class="col form-group">
-                      <input name="website" type="text" class="form-control" placeholder="Your Website">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col form-group">
-                      <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                      <textarea name="message" class="form-control" placeholder="Comment*" onfocus="this.placeholder=''" onblur="this.placeholder ='Comment*'" required></textarea>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary">Post Comment</button>
