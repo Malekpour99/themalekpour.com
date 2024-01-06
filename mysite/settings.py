@@ -140,3 +140,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # configuring django-taggit to be CASE-INSENSITIVE when looking up existing tags
 TAGGIT_CASE_INSENSITIVE = True
+
+# Django summernote settings
+# X_FRAME_OPTIONS = "SAMEORIGIN"
+SUMMERNOTE_THEME = 'bs4'
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode, default
+    'iframe': True,
+
+    # You can put custom Summernote settings
+    'summernote': {
+        # As an example, using Summernote Air-mode
+        'airMode': False,
+    }
+}
