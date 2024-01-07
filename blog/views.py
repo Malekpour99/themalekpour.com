@@ -15,6 +15,9 @@ def home_view(request, **kwargs):
     if kwargs.get("tag_name"):
         posts = posts.filter(tags__name__in=[kwargs["tag_name"]])
         page_title = "Tag: " + kwargs["tag_name"] + " - Posts"
+    if kwargs.get("author_username"):
+        posts = posts.filter(author__username=kwargs["author_username"])
+        page_title = "Author: " + kwargs["author_username"] + " - Posts"
     context = {"posts": posts, "page_title": page_title}
     return render(request, "blog/blog.html", context)
 
