@@ -63,9 +63,28 @@
 
             <div class="blog-pagination">
               <ul class="justify-content-center">
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
+                
+                {% comment %} directs you to the first page {% endcomment %}
+                {% if posts.number != 1 %}
+                <li><a href="?page=1"><i class="bi bi-chevron-bar-left"></i></a></li>
+                {% endif %}
+                
+                {% if posts.has_previous %}
+                <li><a href="?page={{ posts.previous_page_number }}"><i class="bi bi-chevron-left"></i></a></li>
+                {% endif %}
+
+                {% for i in posts.paginator.page_range %}
+                {% if posts.number == i %}<li class="active">{% else %}<li>{% endif %}<a href="?page={{i}}">{{ i }}</a></li>                
+                {% endfor %}
+
+                {% if posts.has_next %}
+                <li><a href="?page={{ posts.next_page_number }}"><i class="bi bi-chevron-right"></i></a></li>
+                {% endif %}
+
+                {% comment %} directs you to the last page {% endcomment %}
+                {% if posts.number != posts.paginator.num_pages %}
+                <li><a href="?page={{ posts.paginator.num_pages }}"><i class="bi bi-chevron-bar-right"></i></a></li>
+                {% endif %}
               </ul>
             </div>
 
