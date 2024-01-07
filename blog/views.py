@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
+from django.shortcuts import render, get_object_or_404
 from blog.models import Post, Comment
 from blog.forms import CommentForm
 from django.db.models import Q
 from django.contrib import messages
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def home_view(request, **kwargs):
@@ -18,6 +19,17 @@ def home_view(request, **kwargs):
     if kwargs.get("author_username"):
         posts = posts.filter(author__username=kwargs["author_username"])
         page_title = "Author: " + kwargs["author_username"] + " - Posts"
+    
+    posts = Paginator(posts, 4)
+    try:
+        page_number = request.GET.get('page')
+        posts = posts.page(page_number)
+    except PageNotAnInteger:
+        # if page_number is not an integer then return the first page
+        posts = posts.page(1)
+    except EmptyPage:
+        # if page is empty then return the last page
+        posts = posts.page(posts.num_pages)
     context = {"posts": posts, "page_title": page_title}
     return render(request, "blog/blog.html", context)
 
