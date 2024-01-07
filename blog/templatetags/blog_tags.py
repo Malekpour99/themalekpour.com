@@ -1,9 +1,15 @@
 from django import template
-from blog.models import Post, Category
+from blog.models import Post, Category, Comment
 from taggit.models import Tag
 from django.utils import timezone
 
 register = template.Library()
+
+
+@register.simple_tag
+def comments_count(pid):
+    "Counting the number of comments for the dedicated post"
+    return Comment.objects.filter(post=pid, approved=True).count()
 
 
 @register.inclusion_tag("blog/includes/blog-tags.html")
