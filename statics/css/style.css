@@ -2434,3 +2434,31 @@ section {
   font-size: 13px;
   color: #012970;
 }
+
+.adjacent-title {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 0 0 0 0;
+  margin: 2rem 0 1rem 0;
+  color: #012970;
+  position: relative;
+}
+
+.next-post {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.next-post-details img {
+  float: right !important;
+}
+
+.next-post-details h4 {
+  margin-left: 5px !important;
+  margin-right: 95px;
+}
+
+.next-post-details time {
+  margin-left: 5px !important;
+  margin-right: 95px;
+}
