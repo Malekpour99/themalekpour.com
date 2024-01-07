@@ -2,7 +2,7 @@
 {% load humanize %}
 <!-- Getting next and previous posts using Django Model.get_next/previous_by_FOO -->
 
-{% if post.get_previous_by_created_date %}
+{% if post.get_previous_by_created_date and post.get_previous_by_created_date.status %}
   <h3 class="adjacent-title"><a href="{% url 'blog:single' pid=post.get_previous_by_created_date.id %}"><i class="bi bi-arrow-left"></i> Previous Post</a></h3>
   <div class="sidebar-item recent-posts">
     <a href="{% url 'blog:single' pid=post.get_previous_by_created_date.id %}">
@@ -14,7 +14,7 @@
     </a>
   </div>
 {% endif %}
-{% if post.get_next_by_created_date %}
+{% if post.get_next_by_created_date and post.get_next_by_created_date.status %}
   <h3 class="adjacent-title next-post"><a href="{% url 'blog:single' pid=post.get_next_by_created_date.id %}">Next Post <i class="bi bi-arrow-right"></i></a></h3>
   <div class="sidebar-item recent-posts">
     <a href="{% url 'blog:single' pid=post.get_next_by_created_date.id %}">
