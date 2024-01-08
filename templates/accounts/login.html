@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_links %}
+<link href="{% static 'css/login-style.css' %}" rel="stylesheet">
+{% endblock css_links %}
+
+{% block main_content %}
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-5">
+          <div class="wrap">
+            <div class="img">
+              <img class="img w-100" src="{% static 'img/bg-1.jpg' %}" alt="login-banner">
+            </div>
+            <div class="login-wrap p-4 p-md-5">
+              <div class="d-flex">
+                <div class="w-100">
+                  <h3 class="mb-3">Log In</h3>
+                </div>
+              </div>
+              <form action="{% url 'accounts:login' %}" method="post" class="signin-form">
+                {% csrf_token %}
+                <div class="form-group my-3">
+                  <input type="text" class="form-control" name="username_or_email" required />
+                  <label class="form-control-placeholder" for="username">Username / Email</label>
+                </div>
+                <div class="form-group my-3">
+                  <input id="password-field" type="password" class="form-control" name="password" required />
+                  <label class="form-control-placeholder" for="password">Password</label>
+                </div>
+                <div class="form-group text-center">
+                  <button class="w-100" type="submit">Log In</button>
+                </div>
+                <div class="form-group d-md-flex">
+                  {% comment %} <div class="w-50 text-left">
+                    <label class="checkbox-wrap checkbox-primary mb-0">
+                      Remember Me<input type="checkbox" checked />
+                      <span class="checkmark"></span>
+                    </label>
+                  </div> {% endcomment %}
+                  <div class="w-100 text-center">
+                    <a href="#">Forgot Password?!</a>
+                  </div>
+                </div>
+              </form>
+              <p class="text-center">
+                Not a member? <a data-toggle="tab" href="#signup">Sign Up</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
