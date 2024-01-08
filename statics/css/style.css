@@ -1570,6 +1570,7 @@ section {
   overflow: hidden;
   margin: -30px -30px 15px -30px;
   position: relative;
+  max-height: 300px;
 }
 
 .recent-blog-posts .post-box .post-img img {
