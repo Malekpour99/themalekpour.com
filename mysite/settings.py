@@ -155,3 +155,6 @@ SUMMERNOTE_CONFIG = {
         'airMode': False,
     }
 }
+
+# Custom backend settings for authentication
+AUTHENTICATION_BACKENDS = ["accounts.backends.MyBackend"]
