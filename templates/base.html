@@ -51,7 +51,7 @@
           <li><a class="nav-link {% if request.path == '/contact' %} active {% endif %}" href="{% url 'website:contact' %}">Contact</a></li>
           {% if request.user.is_authenticated %}
           <li><a>Welcome, {{ request.user.username }}</a></li>
-          <li><a class="getstarted" href="">Logout</a></li>
+          <li><a class="getstarted" href="{% url 'accounts:logout' %}">Logout</a></li>
           {% else %}
           <li><a class="getstarted" href="{% url 'accounts:login' %}">Log-in</a></li>
           <li><a class="getstarted" href="#">Sign-up</a></li>
