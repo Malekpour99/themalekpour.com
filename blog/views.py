@@ -1,5 +1,7 @@
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 from blog.models import Post, Comment
 from blog.forms import CommentForm
 from django.db.models import Q
@@ -19,10 +21,10 @@ def home_view(request, **kwargs):
     if kwargs.get("author_username"):
         posts = posts.filter(author__username=kwargs["author_username"])
         page_title = "Author: " + kwargs["author_username"] + " - Posts"
-    
+
     posts = Paginator(posts, 4)
     try:
-        page_number = request.GET.get('page')
+        page_number = request.GET.get("page")
         posts = posts.page(page_number)
     except PageNotAnInteger:
         # if page_number is not an integer then return the first page
@@ -61,7 +63,8 @@ def single_view(request, pid):
         context = {"post": post, "tags": tags, "form": form, "comments": comments}
         return render(request, "blog/blog-single.html", context)
     else:
-        return render(request, "blog/blog-single.html", context)
+        path = reverse("accounts:login") + "?next=" + request.path
+        return HttpResponseRedirect(path)
 
 
 def search_view(request):
