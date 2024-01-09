@@ -5861,7 +5861,7 @@ button.bg-dark:focus {
   background: #4154f1 !important; }
 
 .ftco-section {
-  padding: 7em 0; }
+  padding: 6em 0 3em; }
 
 .ftco-no-pt {
   padding-top: 0; }
@@ -5887,7 +5887,7 @@ button.bg-dark:focus {
   -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
   box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24); }
   .wrap .img {
-    height: 200px; }
+    height: 300px; }
 
 .form-group {
   position: relative;
