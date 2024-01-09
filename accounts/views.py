@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from accounts.forms import LoginForm
+from accounts.forms import LoginForm, CustomUserCreationForm
 
 
 def login_view(request):
@@ -44,3 +45,34 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("/")
+
+
+def signup_view(request):
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            form = CustomUserCreationForm(request.POST)
+            if form.is_valid():
+                username = form.cleaned_data.get("username")
+                password = form.cleaned_data.get("password1")
+                email = form.cleaned_data.get("email")
+                user = User.objects.create_user(username, email, password)
+                user.save()
+                messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    "User has been created Successfully! \nYou can now login.",
+                )
+                return redirect("/")
+            else:
+                for field, errors in form.errors.items():
+                    for error in errors:
+                        messages.add_message(
+                            request, messages.ERROR, f"{field}: {error}"
+                        )
+
+        form = CustomUserCreationForm()
+        context = {"form": form}
+        return render(request, "accounts/signup.html", context)
+
+    else:
+        return redirect("/")
