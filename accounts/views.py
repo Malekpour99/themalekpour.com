@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 from accounts.forms import LoginForm
+
 
 def login_view(request):
     redirect_to = request.POST.get("next", request.GET.get("next", "/"))
@@ -36,3 +38,9 @@ def login_view(request):
 
     else:
         return redirect(redirect_to)
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect("/")
